@@ -1,0 +1,6 @@
+@use "./scss/base";
+@use "./scss/abstracts";
+@use "./scss/components";
+
+@tailwind components;
+@tailwind utilities;

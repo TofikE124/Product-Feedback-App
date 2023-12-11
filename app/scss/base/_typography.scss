@@ -1,0 +1,87 @@
+@use "../abstracts" as *;
+
+// Text Sizes
+.h1 {
+  font-size: 1.125rem; //18px
+  font-weight: 700;
+  letter-spacing: -0.33px;
+  @include medium-screen {
+    font-size: 1.5rem; //24px
+  }
+}
+
+.h2 {
+  font-size: 0.9375rem; //15px
+  letter-spacing: -0.25px;
+  font-weight: 700;
+  @include medium-screen {
+    font-size: 1.25rem; //20px
+  }
+}
+
+.h3 {
+  font-size: 0.8125rem; //13px
+  font-weight: 700;
+  letter-spacing: -0.25px;
+  @include medium-screen {
+    font-size: 1.125rem; //18px
+  }
+}
+
+.h4 {
+  font-size: 0.8125rem; //13px
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  @include medium-screen {
+    font-size: 0.875rem; //14px
+  }
+}
+
+.b1 {
+  font-size: 0.8125rem; //13px
+  font-weight: 400;
+  @include medium-screen {
+    font-size: 1rem; //16px
+  }
+}
+
+.b2 {
+  font-size: 0.8125rem; //13px
+  font-weight: 400;
+  @include medium-screen {
+    font-size: 0.9375rem; //15px
+  }
+}
+
+.b3 {
+  font-size: 0.8125rem; //13px
+  font-weight: 600;
+}
+
+body,
+.h1,
+.h2,
+.h3,
+.h4,
+.b1,
+.b2,
+.b3 {
+  line-height: 1.45;
+}
+
+// Text Colors
+.txt-white {
+  color: $WHITE;
+}
+.txt-medium-blue {
+  color: $MEDIUM-BLUE;
+}
+.txt-light-slate-grey {
+  color: $LIGHT-SLATE-GREY;
+}
+.txt-levender-violet {
+  color: $LEVENDER-VIOLET;
+}
+.txt-red {
+  color: $RED;
+}

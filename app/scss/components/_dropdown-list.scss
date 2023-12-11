@@ -1,0 +1,70 @@
+@use "../abstracts" as *;
+.dropdown-list {
+  position: relative;
+  cursor: pointer;
+  padding: 1.625rem 1rem;
+  background-color: $MIDNIGT-NAVY;
+  color: $LIGHT-LAVENDER;
+  font-weight: 400;
+  user-select: none;
+  @include border-radius(10px);
+
+  .dropdown-list--arrow {
+    display: inline-block;
+    @include transition(rotate, 200ms);
+  }
+  strong {
+    font-weight: 700;
+  }
+  &.is-active {
+    .dropdown-list--arrow {
+      rotate: 180deg;
+    }
+    .dropdown-options-container {
+      visibility: visible;
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  .dropdown-options-container {
+    position: absolute;
+    width: 255px;
+    top: calc(100% + 1rem);
+    left: 0;
+    @include border-radius(10px);
+    background: $WHITE;
+    box-shadow: 0px 10px 40px -7px rgba(55, 63, 104, 0.35);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    visibility: hidden;
+    opacity: 0;
+    translate: 0 -30px;
+    transition: opacity 200ms, translate 400ms;
+  }
+
+  .dropdown-option {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $LIGHT-SLATE-GREY;
+    padding: 0.75rem 1.5rem;
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      left: 0;
+      height: 1px;
+      background: $DARK-INDIGO;
+      opacity: 0.15;
+    }
+    @include transition(color, 200ms);
+    &:hover {
+      color: $LEVENDER-VIOLET;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@use "./variables" as *;
+
+@mixin small-screen {
+  @media only screen and (max-width: $MEDIUM-SCREEN) {
+    @content;
+  }
+}
+@mixin medium-screen {
+  @media only screen and (min-width: $MEDIUM-SCREEN) {
+    @content;
+  }
+}
+
+@mixin large-screen {
+  @media only screen and (min-width: $LARGE-SCREEN) {
+    @content;
+  }
+}
+
+@mixin transition($property, $duration, $easing: linear) {
+  transition: $property $duration $easing;
+  -webkit-transition: $property $duration $easing;
+  -moz-transition: $property $duration $easing;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+}
