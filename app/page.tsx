@@ -1,7 +1,7 @@
 "use client";
-import SuggestionsHeader from "./SuggestionsHeader";
-import SuggestionsMainHeader from "./SuggestionsMain'sHeader";
-import SuggestionsSummaryContainer from "./SuggestionsSummaryContainer";
+import SuggestionsHeader from "./suggestionComponent/SuggestionsHeader";
+import SuggestionsMainHeader from "./suggestionComponent/SuggestionsMain'sHeader";
+import SuggestionsSummaryContainer from "./suggestionComponent/SuggestionsSummaryContainer";
 
 export default function SuggestionsPage() {
   return (

@@ -1,7 +1,7 @@
 import SuggestionsSummary, {
   SuggestionSummary,
   Category,
-} from "./components/SuggestionsSummary";
+} from "../components/SuggestionsSummary";
 import SuggestionsEmpty from "./SuggestionsEmpty";
 
 const SuggestionsSummaryContainer = () => {

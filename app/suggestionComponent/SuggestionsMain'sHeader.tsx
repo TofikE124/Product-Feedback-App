@@ -1,6 +1,6 @@
 import Image from "next/image";
-import DropdownList from "./components/DropdownList/DropdownList";
-import DropdownOption from "./components/DropdownList/DropdownOption";
+import DropdownList from "../components/DropdownList/DropdownList";
+import DropdownOption from "../components/DropdownList/DropdownOption";
 import SuggestionsIcon from "@/public/assets/suggestions/icon-suggestions.svg";
 
 const SuggestionsMainHeader = () => {

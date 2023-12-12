@@ -1,7 +1,7 @@
 @use "../abstracts" as *;
 .suggestions-page {
   @include medium-screen {
-    margin-top: 3.5rem;
+    margin-top: 5rem;
     display: grid;
     grid-template-rows: 178px 1fr;
     gap: 2.5rem;
