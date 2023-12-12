@@ -186,3 +186,20 @@
     display: none;
   }
 }
+
+.suggestions-page--main--empty {
+  width: 100%;
+  height: 480px;
+  background: $WHITE;
+  margin-top: 1.5rem;
+  @include border-radius(10px);
+  display: grid;
+  justify-content: center;
+  @include medium-screen {
+    height: 600px;
+  }
+}
+
+.suggestions-page--main--empty--container {
+  max-width: 500px;
+}
