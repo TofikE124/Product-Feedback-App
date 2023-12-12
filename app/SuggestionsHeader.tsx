@@ -31,7 +31,9 @@ const SuggestionsHeader = () => {
       >
         <div className="suggestions-page--header--category-list">
           <Card>All</Card>
-          {Object.values(Category).map(category=><Card>{category}</Card>)}
+          {Object.values(Category).map((category, index) => (
+            <Card key={index}>{category}</Card>
+          ))}
         </div>
         <div className="suggestions-page--header--roadmap grid gap-6">
           <div className="flex justify-between items-center w-full">

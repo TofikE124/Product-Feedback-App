@@ -36,12 +36,14 @@ const DropdownList = ({ children, defaultValue }: Props) => {
   };
 
   // Close when click outside Dropdown List
-  window.onclick = (e) => {
-    const target = e.target as HTMLElement;
-    if (!target.closest(".dropdown-list")) {
-      setActive(false);
-    }
-  };
+  if (typeof Window !== "undefined") {
+    onclick = (e) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest(".dropdown-list")) {
+        setActive(false);
+      }
+    };
+  }
 
   return (
     <div
