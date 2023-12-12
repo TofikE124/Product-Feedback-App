@@ -20,6 +20,6 @@ const config: Config = {
       lg: "55em",
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [],
 };
 export default config;

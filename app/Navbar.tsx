@@ -6,7 +6,7 @@ import Skeleton from "./components/Skeleton";
 const Navbar = () => {
   const { status, data: session } = useSession();
   return (
-    <div className="navbar">
+    <div className="navbar sm:hidden">
       {status === "loading" ? (
         <Skeleton width={160} height={50} />
       ) : status === "authenticated" ? (

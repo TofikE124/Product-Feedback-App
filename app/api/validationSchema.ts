@@ -1,5 +1,5 @@
+import { Category } from "@prisma/client";
 import z from "zod";
-import { Category } from "../components/SuggestionsSummary";
 
 const CATEGORY_ARR = Object.values(Category) as string[];
 const CATEGORY_ENUM: [string, ...string[]] = [

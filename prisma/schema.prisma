@@ -11,13 +11,22 @@ datasource db {
 }
 
 model Suggestion {
-  id          Int    @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   publisherId String
-  publisher   User   @relation(fields: [publisherId], references: [id])
-  title       String @db.VarChar(255)
-  description String @db.Text
-  upVotes     Int    @default(0)
-  comments    Int    @default(0)
+  publisher   User     @relation(fields: [publisherId], references: [id])
+  title       String   @db.VarChar(255)
+  description String   @db.Text
+  category    Category @default(BUG)
+  upVotes     Int      @default(0)
+  comments    Int      @default(0)
+}
+
+enum Category {
+  UI
+  UX
+  ENHANCMENT
+  BUG
+  FEATURE
 }
 
 model Account {

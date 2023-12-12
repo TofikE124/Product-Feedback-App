@@ -1,0 +1,15 @@
+@use "../abstracts" as *;
+.form {
+  position: relative;
+  width: 540px;
+  margin-top: 4.25rem;
+  background: $WHITE;
+  padding: 3.25rem 2.625rem;
+  @include border-radius(10px);
+
+  .form-icon {
+    position: absolute;
+    top: -28px;
+  }
+}
+ 

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Jost } from "next/font/google";
 import SessionProvider from "./providers/SessionProvider";
 import "./main.scss";
-import "@radix-ui/themes/styles.css";
 import Navbar from "./Navbar";
 
 const jost = Jost({ weight: ["400", "600", "700"], subsets: ["latin"] });

@@ -1,9 +1,8 @@
-"use client";
-import SuggestionsHeader from "./suggestionComponent/SuggestionsHeader";
-import SuggestionsMainHeader from "./suggestionComponent/SuggestionsMain'sHeader";
-import SuggestionsSummaryContainer from "./suggestionComponent/SuggestionsSummaryContainer";
+import SuggestionsHeader from "./suggestionComponents/SuggestionsHeader";
+import SuggestionsMainHeader from "./suggestionComponents/SuggestionsMain'sHeader";
+import SuggestionsSummaryContainer from "./suggestionComponents/SuggestionsSummaryContainer";
 
-export default function SuggestionsPage() {
+export default async function SuggestionsPage() {
   return (
     <div className="suggestions-page div-container w-full">
       <SuggestionsHeader />
