@@ -1,0 +1,7 @@
+@use "../abstracts" as *;
+.suggestion-summary {
+  display: flex;
+  padding: 1.75rem 2rem;
+  background: $WHITE;
+  @include border-radius(10px);
+}

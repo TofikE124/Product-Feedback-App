@@ -3,6 +3,7 @@ import Link from "next/link";
 import BlackOverlay from "./components/BlackOverlay";
 import Card from "./components/Card";
 import { useState } from "react";
+import { Category } from "./components/SuggestionsSummary";
 
 const SuggestionsHeader = () => {
   const [isMenuActive, setMenuActive] = useState(false);
@@ -29,11 +30,8 @@ const SuggestionsHeader = () => {
         }`}
       >
         <div className="suggestions-page--header--category-list">
-          <Card>UI</Card>
-          <Card>UX</Card>
-          <Card>Enhancment</Card>
-          <Card>Bug</Card>
-          <Card>Feature</Card>
+          <Card>All</Card>
+          {Object.values(Category).map(category=><Card>{category}</Card>)}
         </div>
         <div className="suggestions-page--header--roadmap grid gap-6">
           <div className="flex justify-between items-center w-full">

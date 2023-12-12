@@ -1,7 +1,7 @@
 "use client";
-import SuggestionsEmpty from "./SuggestionsEmpty";
 import SuggestionsHeader from "./SuggestionsHeader";
 import SuggestionsMainHeader from "./SuggestionsMain'sHeader";
+import SuggestionsSummaryContainer from "./SuggestionsSummaryContainer";
 
 export default function SuggestionsPage() {
   return (
@@ -9,7 +9,7 @@ export default function SuggestionsPage() {
       <SuggestionsHeader />
       <main className="suggestions-page--main">
         <SuggestionsMainHeader />
-        <SuggestionsEmpty />
+        <SuggestionsSummaryContainer />
       </main>
     </div>
   );
