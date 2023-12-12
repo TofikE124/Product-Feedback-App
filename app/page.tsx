@@ -1,12 +1,10 @@
 "use client";
+import SuggestionsHeader from "./SuggestionsHeader";
 
-export default function Home() {
+export default function SuggestionsPage() {
   return (
-    <div className="flex gap-5 flex-wrap items-center">
-      <select>
-        <option>UI</option>
-        <option>UX</option>
-      </select>
+    <div className="suggestions-page div-container">
+      <SuggestionsHeader />
     </div>
   );
 }

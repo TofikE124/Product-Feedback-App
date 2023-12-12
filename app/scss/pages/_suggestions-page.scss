@@ -1,0 +1,166 @@
+@use "../abstracts" as *;
+.suggestions-page {
+  @include medium-screen {
+    margin-top: 3.5rem;
+    grid-template-rows: 178px 1fr;
+    gap: 2.5rem;
+  }
+  @include large-screen {
+    margin-top: 6rem;
+    display: grid;
+    grid-template-columns: 255px 1fr;
+    gap: 2rem;
+  }
+}
+
+.suggestions-page--header {
+  position: relative;
+  @include small-screen {
+    width: 100vw;
+    margin-left: -2em;
+  }
+  @include medium-screen {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.625rem;
+    max-height: 178px;
+    .black-overlay {
+      display: none;
+    }
+  }
+  @include large-screen {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+.suggestions-page--header--badge {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url("../../../public/assets/suggestions/mobile/background-header.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 1rem 1.5rem;
+
+  @include medium-screen {
+    align-items: end;
+    background-image: url("../../../public/assets/suggestions/tablet/background-header.png");
+    @include border-radius(10px);
+    .suggestions-page--header--btn {
+      display: none;
+    }
+  }
+
+  @include large-screen {
+    padding-block: 4rem 1.5rem;
+    align-items: end;
+    background-image: url("../../../public/assets/suggestions/desktop/background-header.png");
+  }
+}
+
+.suggestions-page--header--menu-container {
+  @include small-screen {
+    position: fixed;
+    z-index: 200;
+    right: 0;
+    top: 73px;
+    bottom: 0;
+    background: $VERY-LIGHT-GREY;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    width: 270px;
+    translate: 100% 0;
+    opacity: 0;
+    transition: translate 450ms, opacity 350ms;
+
+    &.active {
+      translate: 0 0;
+      opacity: 1;
+    }
+  }
+  @include medium-screen {
+    width: 100%;
+    grid-column: 2/4;
+    display: grid;
+    gap: 0.625rem;
+    grid-template-columns: 1fr 1fr;
+  }
+  @include large-screen {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+.suggestions-page--header--category-list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 1.5rem 1.5rem 2rem;
+  @include border-radius(10px);
+  background: $WHITE;
+}
+
+.suggestions-page--header--roadmap {
+  background-color: $WHITE;
+  padding: 1rem 1.5rem;
+  @include border-radius(10px);
+}
+
+.suggestions-page--header--badge .suggestions-page--header--menu-btn-container {
+  border: 0;
+  background: 0;
+  position: relative;
+  width: 20px;
+  height: 17px;
+  @include medium-screen {
+    display: none;
+  }
+  span {
+    &,
+    &::before,
+    &::after {
+      display: block;
+      background: $WHITE;
+      position: absolute;
+      height: 3px;
+      width: 20px;
+      @include transition(rotate, 400ms);
+    }
+    &::before {
+      content: "";
+      bottom: 6px;
+      @include transition(opacity, 100ms);
+    }
+    &::after {
+      content: "";
+      top: 6px;
+    }
+  }
+  &.active {
+    span {
+      &::before {
+        opacity: 0;
+      }
+      & {
+        rotate: 45deg;
+      }
+      &::after {
+        rotate: 90deg;
+        top: 0;
+      }
+    }
+  }
+}
+
+.small-circle {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  aspect-ratio: 1;
+}

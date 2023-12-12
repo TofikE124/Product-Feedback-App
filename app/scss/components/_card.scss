@@ -9,7 +9,7 @@
   padding: 0.5rem 1rem;
   background: $LIGHT-LAVENDER;
   @include border-radius(10px);
-
+  @include transition(background-color, 200ms);
   &:hover {
     background: $LIGHT-LAVENDER-HOVER;
   }
