@@ -2,12 +2,15 @@
 .dropdown-list {
   position: relative;
   cursor: pointer;
-  padding: 1.625rem 1rem;
   background-color: $MIDNIGT-NAVY;
   color: $LIGHT-LAVENDER;
   font-weight: 400;
   user-select: none;
   @include border-radius(10px);
+
+  @include small-screen {
+    padding: 1rem 0;
+  }
 
   .dropdown-list--arrow {
     display: inline-block;

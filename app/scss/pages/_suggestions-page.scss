@@ -2,17 +2,18 @@
 .suggestions-page {
   @include medium-screen {
     margin-top: 3.5rem;
+    display: grid;
     grid-template-rows: 178px 1fr;
     gap: 2.5rem;
   }
   @include large-screen {
     margin-top: 6rem;
-    display: grid;
     grid-template-columns: 255px 1fr;
     gap: 2rem;
   }
 }
 
+// Header
 .suggestions-page--header {
   position: relative;
   @include small-screen {
@@ -163,4 +164,25 @@
   height: 0.5rem;
   border-radius: 50%;
   aspect-ratio: 1;
+}
+
+// Main
+.suggestions-page--main--header {
+  background: $MIDNIGT-NAVY;
+  padding: 1.5rem;
+  @include small-screen {
+    width: 100vw;
+    margin-left: -2rem;
+    padding: 0.5rem 1.5rem;
+  }
+  @include medium-screen {
+    @include border-radius(10px);
+  }
+}
+
+.suggestions-page--main--header-suggestions-icon,
+.suggestions-page--main--header-suggestions-number {
+  @include small-screen {
+    display: none;
+  }
 }

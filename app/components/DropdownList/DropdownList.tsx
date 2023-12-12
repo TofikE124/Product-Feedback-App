@@ -17,9 +17,16 @@ export interface OptionsContextType {
 
 export const OptionsContext = createContext<OptionsContextType | null>(null);
 
-const DropdownList = ({ children }: PropsWithChildren ) => {
+interface Props {
+  children: ReactNode;
+  defaultValue?: string;
+}
+
+const DropdownList = ({ children, defaultValue }: Props) => {
   const [isActive, setActive] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<string | null>(null);
+  const [selectedValue, setSelectedValue] = useState<string | null>(
+    defaultValue || null
+  );
 
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;

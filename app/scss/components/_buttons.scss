@@ -2,12 +2,16 @@
 
 .btn {
   color: $LIGHT-LAVENDER;
-  font-weight: 700 ;
+  font-weight: 700;
   padding: 0.75rem 3.1875rem;
   @include border-radius(10px);
   border: 0;
   cursor: pointer;
   @include transition(background-color, 250ms);
+}
+
+.btn-small {
+  padding: 0.75rem 1.5rem;
 }
 
 .btn-violet {
