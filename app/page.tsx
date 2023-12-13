@@ -4,9 +4,9 @@ import SuggestionsSummaryContainer from "./suggestionComponents/SuggestionsSumma
 
 export default async function SuggestionsPage() {
   return (
-    <div className="suggestions-page div-container w-full">
+    <div className="suggestions-page div-container">
       <SuggestionsHeader />
-      <main className="suggestions-page--main">
+      <main className="suggestions-page--main h-fit pb-28">
         <SuggestionsMainHeader />
         <SuggestionsSummaryContainer />
       </main>

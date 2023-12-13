@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  width: fit-content;
 
   cursor: pointer;
   border: 0;
@@ -27,5 +28,11 @@
         stroke: white;
       }
     }
+  }
+  @include small-screen {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
   }
 }

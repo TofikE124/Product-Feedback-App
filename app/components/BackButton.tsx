@@ -1,21 +1,17 @@
 "use client";
-import { ReactNode } from "react";
+
+import { useRouter } from "next/navigation";
 import ArrowLeft from "../svgs/ArrowLeft";
 
-interface Props {
-  children: ReactNode;
-  onClick?: () => void;
-  transparent?: boolean;
-}
-
-const BackButton = ({ children, onClick, transparent }: Props) => {
+const BackButton = () => {
+  const router = useRouter();
   return (
     <button
-      className={`btn-back ${transparent ? "" : "btn-midnight-navy"}`}
-      onClick={onClick}
+      onClick={() => router.push("/")}
+      className="h4 txt-light-slate-grey bg-transparent cursor-pointer border-none flex gap-4 items-center no-underline"
     >
-      <ArrowLeft />
-      <span>{children}</span>
+      <ArrowLeft stroke="#4661E6" />
+      Go Back
     </button>
   );
 };

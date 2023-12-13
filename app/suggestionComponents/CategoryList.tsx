@@ -1,23 +1,25 @@
 import { Category } from "@prisma/client";
 import Card from "../components/Card";
 
+const keys = Object.values(Category);
+type CategoryType = (typeof keys)[number];
+export const CategoryRecord: Record<
+  CategoryType,
+  { value: string; label: string }
+> = {
+  UI: { value: "UI", label: "UI" },
+  UX: { value: "UX", label: "UX" },
+  BUG: { value: "BUG", label: "Bug" },
+  ENHANCMENT: { value: "ENHANCMENT", label: "Enhancement" },
+  FEATURE: { value: "FEATURE", label: "Feature" },
+};
+
 const CategoryList = () => {
-  const keys = Object.values(Category);
-  type CategoryType = (typeof keys)[number];
-
-  const CategoryRecord: Record<CategoryType, string> = {
-    UI: "UI",
-    UX: "UX",
-    BUG: "Bug",
-    ENHANCMENT: "Enhancement",
-    FEATURE: "Feature",
-  };
-
   return (
     <div className="suggestions-page--header--category-list">
       <Card>All</Card>
       {Object.values(CategoryRecord).map((category, index) => (
-        <Card key={index}>{category}</Card>
+        <Card key={index}>{category.label}</Card>
       ))}
     </div>
   );

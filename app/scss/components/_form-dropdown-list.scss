@@ -1,0 +1,64 @@
+@use "../abstracts" as *;
+.form-dropdown-list {
+  position: relative;
+  border: 0;
+  padding: 0.75rem 1.5rem;
+  background: $VERY-LIGHT-GREY;
+  user-select: none;
+  @include border-radius(10px);
+
+  &.error {
+    outline: 1px solid $RED;
+  }
+
+  .form-dropdown-options-container {
+    position: absolute;
+    top: calc(100% + 1.5rem);
+    left: 0;
+    background-color: $WHITE;
+    box-shadow: 0px 10px 40px -7px rgba(55, 63, 104, 0.35);
+    @include border-radius(10px);
+    width: 255px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 0;
+    opacity: 0;
+    z-index: 2000;
+    translate: 0 -1.5rem;
+    transition: opacity 200ms, translate 400ms;
+    overflow: hidden;
+
+    .form-dropdown-option {
+      position: relative;
+      padding: 0.75rem 1.5rem;
+      &:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        height: 1px;
+        background: $DARK-INDIGO;
+        opacity: 0.15;
+      }
+      transition: background-color 300ms, color 250ms;
+      &:hover {
+        background: $LEVENDER-VIOLET;
+        color: white;
+      }
+    }
+  }
+
+  &.is-active {
+    .form-dropdown-options-container {
+      height: initial;
+      visibility: visible;
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+  .form-dropdown-select {
+    display: none;
+  }
+}

@@ -17,6 +17,7 @@ model Suggestion {
   title       String   @db.VarChar(255)
   description String   @db.Text
   category    Category @default(BUG)
+  status      Status   @default(PLANNED)
   upVotes     Int      @default(0)
   comments    Int      @default(0)
 }
@@ -27,6 +28,12 @@ enum Category {
   ENHANCMENT
   BUG
   FEATURE
+}
+
+enum Status {
+  PLANNED
+  IN_PROGRESS
+  LIVE
 }
 
 model Account {

@@ -2,7 +2,6 @@
 import {
   Dispatch,
   MouseEvent,
-  PropsWithChildren,
   ReactNode,
   SetStateAction,
   createContext,
@@ -48,7 +47,7 @@ const DropdownList = ({ children, defaultValue }: Props) => {
   return (
     <div
       onClick={(e) => handleClick(e)}
-      className={`dropdown-list  ${isActive && "is-active"}`}
+      className={`dropdown-list  ${isActive ? "is-active" : ""}`}
     >
       {selectedValue ? (
         <>

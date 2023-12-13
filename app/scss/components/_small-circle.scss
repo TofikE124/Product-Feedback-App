@@ -1,0 +1,7 @@
+@use "../base/utility-classes";
+.small-circle {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  aspect-ratio: 1;
+}

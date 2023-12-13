@@ -2,23 +2,27 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import Skeleton from "./components/Skeleton";
+import { Toaster } from "react-hot-toast";
 
 const Navbar = () => {
   const { status, data: session } = useSession();
   return (
-    <div className="navbar sm:hidden">
-      {status === "loading" ? (
-        <Skeleton width={160} height={50} />
-      ) : status === "authenticated" ? (
-        <button className="btn btn-red" onClick={() => signOut()}>
-          Signout
-        </button>
-      ) : (
-        <button className="btn btn-indigo" onClick={() => signIn("google")}>
-          Login
-        </button>
-      )}
-    </div>
+    <>
+      <Toaster />
+      <div className="navbar sm:hidden">
+        {status === "loading" ? (
+          <Skeleton width={160} height={50} />
+        ) : status === "authenticated" ? (
+          <button className="btn btn-red" onClick={() => signOut()}>
+            Signout
+          </button>
+        ) : (
+          <button className="btn btn-indigo" onClick={() => signIn("google")}>
+            Login
+          </button>
+        )}
+      </div>
+    </>
   );
 };
 

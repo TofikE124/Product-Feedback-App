@@ -4,6 +4,7 @@ import Vote from "./Vote";
 
 import CommnetIcon from "@/public/assets/shared/icon-comments.svg";
 import { Suggestion } from "@prisma/client";
+import Link from "next/link";
 
 const SuggestionsSummary = ({
   suggestionSummary,
@@ -11,16 +12,22 @@ const SuggestionsSummary = ({
   suggestionSummary: Suggestion;
 }) => {
   return (
-    <div className="suggestion-summary flex items-start ">
+    <div className="suggestion-summary items-start no-underline">
+      <Link
+        href={`/edit/${suggestionSummary.id}`}
+        className="suggestion-summary--bg  cursor-pointer"
+      ></Link>
       <Vote>{suggestionSummary.upVotes}</Vote>
-      <div className="flex flex-col items-start ml-10 mr-auto">
-        <h3 className="h3 txt-dark-indigo mb-1">{suggestionSummary.title}</h3>
-        <p className="b1 txt-light-slate-grey mb-3 ">
-          {suggestionSummary.description}
-        </p>
+      <h3 className="suggestion-summary--title h3 txt-dark-indigo">
+        {suggestionSummary.title}
+      </h3>
+      <p className="suggestion-summary--description b1 txt-light-slate-grey">
+        {suggestionSummary.description}
+      </p>
+      <div className="suggestion-summary--category">
         <Card>{suggestionSummary.category}</Card>
       </div>
-      <div className="flex items-center self-center gap-2">
+      <div className="suggestion-summary--comments flex items-center self-center gap-2">
         <Image src={CommnetIcon} alt="Comment Icon" />
         <p className="b1 txt-dark-indigo fw-bold">
           {suggestionSummary.comments}

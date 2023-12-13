@@ -1,15 +1,24 @@
 @use "../abstracts" as *;
 .form {
   position: relative;
-  width: 540px;
-  margin-top: 4.25rem;
+  width: 370px;
+  margin-top: 3.5rem;
   background: $WHITE;
-  padding: 3.25rem 2.625rem;
+  padding: 2.75rem 1.5rem;
   @include border-radius(10px);
 
   .form-icon {
     position: absolute;
     top: -28px;
   }
+  .form--title {
+    word-wrap: break-word;
+    max-width: 100%;
+  }
+
+  @include medium-screen {
+    width: 540px;
+    padding: 3.25rem 2.625rem;
+    margin-top: 4.25rem;
+  }
 }
- 

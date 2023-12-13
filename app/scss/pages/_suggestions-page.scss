@@ -1,13 +1,13 @@
 @use "../abstracts" as *;
 .suggestions-page {
   @include medium-screen {
-    margin-top: 5rem;
+    padding-top: 5rem;
     display: grid;
     grid-template-rows: 178px 1fr;
     gap: 2.5rem;
   }
   @include large-screen {
-    margin-top: 6rem;
+    padding-top: 6.5rem;
     grid-template-columns: 255px 1fr;
     gap: 2rem;
   }
@@ -129,6 +129,7 @@
       display: block;
       background: $WHITE;
       position: absolute;
+      left: 0;
       height: 3px;
       width: 20px;
       @include transition(rotate, 400ms);
@@ -157,13 +158,6 @@
       }
     }
   }
-}
-
-.small-circle {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  aspect-ratio: 1;
 }
 
 // Main

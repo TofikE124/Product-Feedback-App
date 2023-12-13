@@ -12,8 +12,8 @@ $BORDER-CLIP: 0px;
     color: $DARK-INDIGO-HOVER;
   }
 
-  &:hover,
-  &:focus {
+  &:hover:not(.error),
+  &:focus:not(.error) {
     outline: 0;
     outline: 1px solid $MEDIUM-BLUE;
   }

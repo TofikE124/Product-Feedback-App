@@ -18,12 +18,16 @@ h3,
 h4,
 h5,
 figure,
-picture, 
+picture,
 ul {
   margin: 0;
 }
 
 /* Set up the body */
+html {
+  width: 100vw;
+  overflow-x: hidden;
+}
 body {
   min-height: 100vh;
   line-height: 1.5;

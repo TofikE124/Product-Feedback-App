@@ -1,7 +1,75 @@
 @use "../abstracts" as *;
 .suggestion-summary {
-  display: flex;
+  display: grid;
+  position: relative;
   padding: 1.75rem 2rem;
   background: $WHITE;
+  z-index: 1;
   @include border-radius(10px);
+
+  .vote {
+    grid-area: vote;
+  }
+  .suggestion-summary--comments {
+    grid-area: comments;
+  }
+  .suggestion-summary--title {
+    grid-area: title;
+  }
+  .suggestion-summary--description {
+    grid-area: description;
+  }
+  .suggestion-summary--category {
+    grid-area: category;
+    width: fit-content;
+  }
+
+  @include small-screen {
+    grid-template-columns: 1fr 100px;
+    grid-template-areas:
+      "title title"
+      "description description"
+      "category category"
+      "vote comments";
+    justify-items: start;
+    gap: 0.5rem;
+
+    .suggestion-summary--category {
+      margin-bottom: 0.5rem;
+    }
+
+    .suggestion-summary--comments {
+      justify-self: end;
+    }
+  }
+
+  @include medium-screen {
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      "vote title ."
+      "vote description comments"
+      ". category .";
+    column-gap: 2.5rem;
+
+    .suggestion-summary--title,
+    .suggestion-summary--description {
+      max-width: 320px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .suggestion-summary--category {
+      margin-top: 0.75rem;
+    }
+    .suggestion-summary--comments {
+      justify-self: end;
+    }
+  }
+
+  .suggestion-summary--bg {
+    position: absolute;
+    inset: 0 0 0 0;
+    z-index: -1;
+  }
 }

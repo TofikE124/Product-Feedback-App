@@ -1,10 +1,12 @@
+import { Status } from "@prisma/client";
 import prisma from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { createSuggestionSchema } from "../validationSchema";
 import { getServerSession } from "next-auth";
+import { nextAuthOptions } from "../auth/[...nextauth]/route";
 
 export async function GET(request: NextRequest) {
-  const suggestions = await prisma.session.findMany();
+  const suggestions = await prisma.suggestion.findMany();
   return NextResponse.json(suggestions);
 }
 
@@ -13,7 +15,7 @@ export async function POST(request: NextRequest) {
   const validation = createSuggestionSchema.safeParse(body);
   if (!validation.success) return NextResponse.json(validation.error.errors);
 
-  const session = await getServerSession();
+  const session = await getServerSession(nextAuthOptions);
   if (!session?.user)
     return NextResponse.json({ message: "You can't do that" });
 
@@ -26,8 +28,10 @@ export async function POST(request: NextRequest) {
       title: body.title,
       description: body.description,
       publisherId: user?.id!,
+      category: body.category,
+      status: body.status,
     },
   });
 
-  return NextResponse.json(newSuggestion);
+  return NextResponse.json(newSuggestion, { status: 200 });
 }

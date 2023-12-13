@@ -1,9 +1,14 @@
+"use client";
 import Image from "next/image";
 import DropdownList from "../components/DropdownList/DropdownList";
 import DropdownOption from "../components/DropdownList/DropdownOption";
 import SuggestionsIcon from "@/public/assets/suggestions/icon-suggestions.svg";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const SuggestionsMainHeader = () => {
+  const router = useRouter();
+
   return (
     <div className="suggestions-page--main--header flex items-center">
       <Image
@@ -20,9 +25,9 @@ const SuggestionsMainHeader = () => {
         <DropdownOption>Most Comments</DropdownOption>
         <DropdownOption>Least Comments</DropdownOption>
       </DropdownList>
-      <button className="btn btn-small btn-violet ml-auto h4">
+      <Link href="/create" className="btn btn-small btn-violet ml-auto h4">
         + Add Feedback
-      </button>
+      </Link>
     </div>
   );
 };
