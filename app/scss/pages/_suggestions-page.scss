@@ -1,13 +1,11 @@
 @use "../abstracts" as *;
 .suggestions-page {
   @include medium-screen {
-    padding-top: 5rem;
     display: grid;
     grid-template-rows: 178px 1fr;
     gap: 2.5rem;
   }
   @include large-screen {
-    padding-top: 6.5rem;
     grid-template-columns: 255px 1fr;
     gap: 2rem;
   }

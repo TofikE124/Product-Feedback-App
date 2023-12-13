@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <>
       <Toaster />
-      <div className="navbar sm:hidden">
+      <div className="div-container navbar sm:hidden">
         {status === "loading" ? (
           <Skeleton width={160} height={50} />
         ) : status === "authenticated" ? (

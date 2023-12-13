@@ -9,6 +9,11 @@
   border: 0;
   cursor: pointer;
   @include transition(background-color, 250ms);
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 }
 
 .btn-small {

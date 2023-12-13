@@ -147,7 +147,7 @@ const EditForm = ({ suggestion }: { suggestion: Suggestion }) => {
         </button>
         <button
           type="button"
-          onClick={() => router.push("/")}
+          onClick={() => router.back()}
           className="btn btn-small btn-indigo  md:ml-auto md:mr-4"
         >
           Cancel

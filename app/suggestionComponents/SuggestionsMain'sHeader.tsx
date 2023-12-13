@@ -5,9 +5,12 @@ import DropdownOption from "../components/DropdownList/DropdownOption";
 import SuggestionsIcon from "@/public/assets/suggestions/icon-suggestions.svg";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const SuggestionsMainHeader = () => {
   const router = useRouter();
+
+  const { status } = useSession();
 
   return (
     <div className="suggestions-page--main--header flex items-center">
@@ -25,9 +28,13 @@ const SuggestionsMainHeader = () => {
         <DropdownOption>Most Comments</DropdownOption>
         <DropdownOption>Least Comments</DropdownOption>
       </DropdownList>
-      <Link href="/create" className="btn btn-small btn-violet ml-auto h4">
+      <button
+        disabled={status !== "authenticated"}
+        onClick={() => router.push("/create")}
+        className="btn btn-small btn-violet ml-auto h4"
+      >
         + Add Feedback
-      </Link>
+      </button>
     </div>
   );
 };

@@ -5,18 +5,27 @@ import Vote from "./Vote";
 import CommnetIcon from "@/public/assets/shared/icon-comments.svg";
 import { Suggestion } from "@prisma/client";
 import Link from "next/link";
+import { getServerSession } from "next-auth";
+import { nextAuthOptions } from "../api/auth/[...nextauth]/route";
 
-const SuggestionsSummary = ({
+const SuggestionsSummary = async ({
   suggestionSummary,
 }: {
   suggestionSummary: Suggestion;
 }) => {
+  const session = await getServerSession(nextAuthOptions);
+
   return (
     <div className="suggestion-summary items-start no-underline">
-      <Link
-        href={`/edit/${suggestionSummary.id}`}
-        className="suggestion-summary--bg  cursor-pointer"
-      ></Link>
+      {session?.user ? (
+        <Link
+          href={`/edit/${suggestionSummary.id}`}
+          className={`suggestion-summary--bg   cursor-pointer`}
+        ></Link>
+      ) : (
+        ""
+      )}
+
       <Vote>{suggestionSummary.upVotes}</Vote>
       <h3 className="suggestion-summary--title h3 txt-dark-indigo">
         {suggestionSummary.title}

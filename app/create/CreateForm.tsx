@@ -19,7 +19,7 @@ import { StatusList } from "../suggestionComponents/RoadMap";
 
 type FormType = z.infer<typeof createSuggestionSchema>;
 
-const form = () => {
+const CreateForm = () => {
   const {
     register,
     handleSubmit,
@@ -119,7 +119,7 @@ const form = () => {
       <div className="flex justify-end mt-8 sm:flex-col gap-4">
         <button
           type="button"
-          onClick={() => router.push("/")}
+          onClick={() => router.back()}
           className="btn btn-small btn-indigo"
         >
           Cancel
@@ -132,4 +132,4 @@ const form = () => {
   );
 };
 
-export default form;
+export default CreateForm;

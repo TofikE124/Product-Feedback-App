@@ -1,5 +1,5 @@
 import { Toaster } from "react-hot-toast";
-import CreateForm from "./CrreateForm";
+import CreateForm from "./CreateForm";
 import BackButton from "../components/BackButton";
 
 const CreatePage = () => {
