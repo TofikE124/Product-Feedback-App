@@ -1,0 +1,12 @@
+@use "../abstracts" as *;
+.suggestion-form-page {
+  @include small-screen {
+    margin-top: 5.75rem;
+  }
+  @include medium-screen {
+    margin-top: -5rem;
+  }
+  @include large-screen {
+    margin-top: -6.5rem;
+  }
+}

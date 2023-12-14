@@ -2,9 +2,9 @@
 .form {
   position: relative;
   width: 370px;
-  margin-top: 3.5rem;
   background: $WHITE;
   padding: 2.75rem 1.5rem;
+  margin-top: 4.25rem;
   @include border-radius(10px);
 
   .form-icon {

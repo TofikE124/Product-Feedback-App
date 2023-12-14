@@ -4,8 +4,7 @@ import BackButton from "../components/BackButton";
 
 const CreatePage = () => {
   return (
-    <div className="create-suggestion-page mt-24 w-fit mx-auto">
-      <Toaster />
+    <div className="suggestion-form-page  w-fit mx-auto">
       <BackButton />
       <CreateForm />
     </div>

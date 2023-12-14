@@ -7,27 +7,30 @@ const values = Object.values(Status);
 type statusType = (typeof values)[number];
 export const StatusList: Record<
   statusType,
-  { value: string; label: string; className: string }
+  { value: Status; label: string; description: string; className: string }
 > = {
+  PLANNED: {
+    value: "PLANNED",
+    label: "Planned",
+    className: "bg-light-salmon",
+    description: "Features to be developed in futre",
+  },
   IN_PROGRESS: {
     value: "IN_PROGRESS",
     label: "In-Progress",
-    className: "bg-light-salmon",
+    className: "bg-levender-violet",
+    description: "Features currently being developed",
   },
   LIVE: {
     value: "LIVE",
     label: "Live",
-    className: "bg-levender-violet",
-  },
-  PLANNED: {
-    value: "PLANNED",
-    label: "Planned",
     className: "bg-light-sky-blue",
+    description: "Features About to be developed",
   },
 };
 
 const RoadMap = () => {
-  const [data, setData] = useState<Suggestion[]>();
+  const [data, setData] = useState<Suggestion[]>([]);
 
   useEffect(() => {
     axios.get<Suggestion[]>("/api/suggestions").then((res) => {
@@ -41,7 +44,7 @@ const RoadMap = () => {
     <div className="suggestions-page--header--roadmap grid gap-6">
       <div className="flex justify-between items-center w-full">
         <h3 className="h3 txt-dark-indigo">Roadmap</h3>
-        <Link href="" className="b3 txt-medium-blue underline">
+        <Link href="/roadmap" className="b3 txt-medium-blue underline">
           View
         </Link>
       </div>

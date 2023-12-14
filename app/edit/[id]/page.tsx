@@ -18,7 +18,7 @@ const EditPage = async ({ params: { id } }: Props) => {
   }
 
   return (
-    <div className="create-suggestion-page mt-24 w-fit mx-auto">
+    <div className="suggestion-form-page w-fit mx-auto">
       <BackButton />
       <EditForm suggestion={suggestion} />
     </div>
