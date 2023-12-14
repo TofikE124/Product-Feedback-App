@@ -44,3 +44,7 @@ export const updateSuggestionSchema = z.object({
     .enum(STATUS_ENUM, { required_error: "This field is required" })
     .optional(),
 });
+
+export const voteSchema = z.object({
+  suggestionId: z.number().min(1),
+});

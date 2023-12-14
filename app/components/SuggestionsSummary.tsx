@@ -1,19 +1,27 @@
 import Image from "next/image";
 import Card from "./Card";
+import CommnetIcon from "@/public/assets/shared/icon-comments.svg";
+import { Suggestion, Vote as VoteType } from "@prisma/client";
+import { getServerSession } from "next-auth";
+import Link from "next/link";
+import { nextAuthOptions } from "../api/auth/[...nextauth]/route";
 import Vote from "./Vote";
 
-import CommnetIcon from "@/public/assets/shared/icon-comments.svg";
-import { Suggestion } from "@prisma/client";
-import Link from "next/link";
-import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "../api/auth/[...nextauth]/route";
+type SuggestionWithVotes = { Votes: VoteType[] } & Suggestion;
 
 const SuggestionsSummary = async ({
   suggestionSummary,
+  userVotes,
 }: {
-  suggestionSummary: Suggestion;
+  suggestionSummary: SuggestionWithVotes;
+  userVotes: VoteType[];
 }) => {
   const session = await getServerSession(nextAuthOptions);
+
+  const hasVoted = Boolean(
+    userVotes?.filter((vote) => vote.suggestionId === suggestionSummary.id)
+      .length
+  );
 
   return (
     <div className="suggestion-summary items-start no-underline">
@@ -26,7 +34,9 @@ const SuggestionsSummary = async ({
         ""
       )}
 
-      <Vote>{suggestionSummary.upVotes}</Vote>
+      <Vote isActive={hasVoted} suggestionId={suggestionSummary.id}>
+        {suggestionSummary.Votes.length}
+      </Vote>
       <h3 className="suggestion-summary--title h3 txt-dark-indigo">
         {suggestionSummary.title}
       </h3>

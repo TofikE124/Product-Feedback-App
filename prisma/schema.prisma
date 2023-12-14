@@ -18,8 +18,8 @@ model Suggestion {
   description String   @db.Text
   category    Category @default(BUG)
   status      Status   @default(PLANNED)
-  upVotes     Int      @default(0)
   comments    Int      @default(0)
+  Votes       Vote[]
 }
 
 enum Category {
@@ -34,6 +34,16 @@ enum Status {
   PLANNED
   IN_PROGRESS
   LIVE
+}
+
+model Vote {
+  id           String     @id @default(cuid())
+  userId       String
+  user         User       @relation(fields: [userId], references: [id])
+  suggestion   Suggestion @relation(fields: [suggestionId], references: [id])
+  suggestionId Int
+
+  @@unique([userId, suggestionId]) // Ensures uniqueness of userId and suggestionId combination
 }
 
 model Account {
@@ -72,6 +82,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   Suggestion    Suggestion[]
+  Votes         Vote[]
 }
 
 model VerificationToken {
