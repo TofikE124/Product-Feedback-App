@@ -5,7 +5,7 @@ import FormDropdownOption from "../components/FormDropdownList/FormDropdownOptio
 import FormDropdownList from "../components/FormDropdownList/FromDropdownList";
 import Spinner from "../components/Spinner";
 import TextField from "../components/TextField";
-import { CategoryRecord } from "../suggestionComponents/CategoryList";
+import { CategoryList } from "../lists/categoryList";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useSession } from "next-auth/react";
@@ -15,7 +15,7 @@ import { createSuggestionSchema } from "../api/validationSchema";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { StatusList } from "../suggestionComponents/StatusList";
+import { StatusList } from "../lists/StatusList";
 
 type FormType = z.infer<typeof createSuggestionSchema>;
 
@@ -29,7 +29,6 @@ const CreateForm = () => {
   } = useForm<FormType>({ resolver: zodResolver(createSuggestionSchema) });
 
   const router = useRouter();
-  const { status } = useSession();
   const [isLoading, setLoading] = useState(false);
 
   const onSubmit = (data: FieldValues) => {
@@ -77,7 +76,7 @@ const CreateForm = () => {
             setError("category", {});
           }}
         >
-          {Object.values(CategoryRecord).map((category) => (
+          {Object.values(CategoryList).map((category) => (
             <FormDropdownOption key={category.value} value={category.value}>
               {category.label}
             </FormDropdownOption>

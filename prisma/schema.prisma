@@ -15,7 +15,7 @@ model Suggestion {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @default(now()) @updatedAt
   publisherId String
-  publisher   User      @relation(fields: [publisherId], references: [id])
+  publisher   User      @relation(fields: [publisherId], references: [id], onDelete: Cascade)
   title       String    @db.VarChar(255)
   description String    @db.Text
   category    Category  @default(BUG)
@@ -41,8 +41,8 @@ enum Status {
 model Vote {
   id           String     @id @default(cuid())
   userId       String
-  user         User       @relation(fields: [userId], references: [id])
-  suggestion   Suggestion @relation(fields: [suggestionId], references: [id])
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  suggestion   Suggestion @relation(fields: [suggestionId], references: [id], onDelete: Cascade)
   suggestionId Int
 
   @@unique([userId, suggestionId]) // Ensures uniqueness of userId and suggestionId combination
@@ -53,13 +53,13 @@ model Comment {
   createdAt     DateTime   @default(now())
   content       String     @db.Text()
   publisherId   String
-  publisher     User       @relation(fields: [publisherId], references: [id])
+  publisher     User       @relation(fields: [publisherId], references: [id], onDelete: Cascade)
   suggestionId  Int
-  suggestion    Suggestion @relation(fields: [suggestionId], references: [id])
+  suggestion    Suggestion @relation(fields: [suggestionId], references: [id], onDelete: Cascade)
   taggedUserId  String? // Reference to the tagged user
-  taggedUser    User?      @relation("TaggedSuggestions", fields: [taggedUserId], references: [id])
+  taggedUser    User?      @relation("TaggedSuggestions", fields: [taggedUserId], references: [id], onDelete: Cascade)
   parentId      String? // Reference to the parent comment (self-referential)
-  parentComment Comment?   @relation("ChildComments", fields: [parentId], references: [id])
+  parentComment Comment?   @relation("ChildComments", fields: [parentId], references: [id], onDelete: Cascade)
   childComments Comment[]  @relation("ChildComments") // One-to-many relationship for replies
 }
 

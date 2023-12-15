@@ -1,11 +1,12 @@
 "use client";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import ArrowUp from "./svgs/ArrowUp";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Skeleton from "./Skeleton";
+import Spinner from "./Spinner";
 
 interface Props {
   children: ReactNode;
@@ -23,25 +24,33 @@ const Vote = ({
   const router = useRouter();
   const { status } = useSession();
 
+  const [isLoading, setLoading] = useState(false);
+
   const handleClick = () => {
     if (!isActive) {
+      setLoading(true);
       axios
         .post("/api/votes", { suggestionId })
         .then((res) => {
           router.refresh();
+          setLoading(false);
         })
         .catch((error) => {
           toast.error("Can't vote now");
-        });
+        })
+        .finally(() => setLoading(false));
     } else {
+      setLoading(true);
       axios
         .delete(`/api/votes/${suggestionId}`)
         .then((res) => {
           router.refresh();
+          setLoading(false);
         })
         .catch((error) => {
           toast.error("Can't delete vote now");
-        });
+        })
+        .finally(() => setLoading(false));
     }
   };
 
@@ -53,8 +62,14 @@ const Vote = ({
       onClick={() => handleClick()}
       className={`vote ${isActive ? "is-active" : ""}`}
     >
-      <ArrowUp />
-      {children}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <ArrowUp />
+          {children}
+        </>
+      )}
     </button>
   );
 };

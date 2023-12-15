@@ -3,7 +3,7 @@ import prisma from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { createSuggestionSchema } from "../validationSchema";
 import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "../auth/[...nextauth]/route";
+import { nextAuthOptions } from "../auth/[...nextauth]/nextAuthOptions";
 
 export async function GET(request: NextRequest) {
   const suggestions = await prisma.suggestion.findMany();

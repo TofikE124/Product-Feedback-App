@@ -7,6 +7,7 @@ import moment from "moment";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Spinner from "@/app/components/Spinner";
 
 type CommentWithPublisherAndTagged = {
   publisher: User;
@@ -22,6 +23,7 @@ interface Props {
   suggestionId: number;
 }
 const Comment = ({ comment, user, suggestionId }: Props) => {
+  const [isLoading, setLoading] = useState(false);
   const [isReplying, setReplying] = useState(false);
   const [value, setValue] = useState("");
 
@@ -33,6 +35,7 @@ const Comment = ({ comment, user, suggestionId }: Props) => {
   };
 
   const handlePostReply = () => {
+    setLoading(true);
     axios
       .post("/api/comments", {
         content: value,
@@ -47,6 +50,10 @@ const Comment = ({ comment, user, suggestionId }: Props) => {
       .catch((err) => {
         toast.error("Couldn't post reply");
         setReplying(false);
+        setLoading(false);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -82,7 +89,7 @@ const Comment = ({ comment, user, suggestionId }: Props) => {
         <div className="reply-section">
           <TextField
             value={value}
-            onChange={(value) => handleChange(value)}
+            onChange={(e) => handleChange(e.target.value)}
             isMultiline={true}
           />
           <div className="buttons-container flex flex-col gap-3">
@@ -90,7 +97,7 @@ const Comment = ({ comment, user, suggestionId }: Props) => {
               onClick={handlePostReply}
               className="h4 btn btn-small btn-violet w-max"
             >
-              Post Reply
+              {isLoading ? <Spinner /> : "Post Reply"}
             </button>
             <button
               onClick={() => setReplying(false)}

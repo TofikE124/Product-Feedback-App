@@ -1,5 +1,8 @@
 @use "../abstracts" as *;
 .suggestions-page {
+  @include small-screen {
+    margin-top: 72px;
+  }
   @include medium-screen {
     display: grid;
     grid-template-rows: 178px 1fr;
@@ -34,7 +37,9 @@
   }
 }
 .suggestions-page--header--badge {
-  position: relative;
+  position: fixed;
+  top: 0;
+  width: 100%;
   z-index: 100;
   display: flex;
   justify-content: space-between;
@@ -45,6 +50,7 @@
   padding: 1rem 1.5rem;
 
   @include medium-screen {
+    position: relative;
     align-items: end;
     background-image: url("../../../public/assets/suggestions/tablet/background-header.png");
     @include border-radius(10px);

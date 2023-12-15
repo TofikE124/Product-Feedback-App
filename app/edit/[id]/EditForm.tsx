@@ -5,7 +5,7 @@ import FormDropdownOption from "../../components/FormDropdownList/FormDropdownOp
 import FormDropdownList from "../../components/FormDropdownList/FromDropdownList";
 import Spinner from "../../components/Spinner";
 import TextField from "../../components/TextField";
-import { CategoryRecord as CategoryList } from "../../suggestionComponents/CategoryList";
+import { CategoryList as CategoryList } from "../../lists/categoryList";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useSession } from "next-auth/react";
@@ -16,7 +16,7 @@ import { z } from "zod";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Suggestion } from "@prisma/client";
-import { StatusList } from "@/app/suggestionComponents/StatusList";
+import { StatusList } from "@/app/lists/StatusList";
 
 type FormType = z.infer<typeof createSuggestionSchema>;
 

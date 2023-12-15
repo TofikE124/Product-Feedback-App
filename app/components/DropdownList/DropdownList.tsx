@@ -5,6 +5,7 @@ import {
   ReactNode,
   SetStateAction,
   createContext,
+  useEffect,
   useState,
 } from "react";
 import ArrowDown from "../svgs/ArrowDown";
@@ -19,9 +20,14 @@ export const OptionsContext = createContext<OptionsContextType | null>(null);
 interface Props {
   children: ReactNode;
   defaultValue?: string;
+  onChange?: (value: string) => void;
 }
 
-const DropdownList = ({ children, defaultValue }: Props) => {
+const DropdownList = ({
+  children,
+  defaultValue,
+  onChange = () => {},
+}: Props) => {
   const [isActive, setActive] = useState(false);
   const [selectedValue, setSelectedValue] = useState<string | null>(
     defaultValue || null
@@ -43,6 +49,10 @@ const DropdownList = ({ children, defaultValue }: Props) => {
       }
     };
   }
+
+  useEffect(() => {
+    onChange(selectedValue || "");
+  }, [selectedValue]);
 
   return (
     <div

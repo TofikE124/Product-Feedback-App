@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client";
 import { createCommentSchema } from "../validationSchema";
 import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "../auth/[...nextauth]/route";
+import { nextAuthOptions } from "../auth/[...nextauth]/nextAuthOptions";
 
 export async function GET(request: NextRequest) {
   const comments = await prisma.comment.findMany();

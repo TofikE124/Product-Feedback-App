@@ -4,8 +4,12 @@ import { useState } from "react";
 import TextField from "../components/TextField";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Spinner from "../components/Spinner";
+import { useSession } from "next-auth/react";
+import Skeleton from "../components/Skeleton";
 
 const PostCommentSection = ({ suggestionId }: { suggestionId: number }) => {
+  const [isLoading, setLoading] = useState(false);
   const [value, setValue] = useState("");
   const maxChars = 250;
 
@@ -15,7 +19,10 @@ const PostCommentSection = ({ suggestionId }: { suggestionId: number }) => {
   };
   const router = useRouter();
 
+  const { status } = useSession();
+
   const handlePost = () => {
+    setLoading(true);
     axios
       .post("/api/comments", { content: value, suggestionId })
       .then(() => {
@@ -23,8 +30,22 @@ const PostCommentSection = ({ suggestionId }: { suggestionId: number }) => {
       })
       .catch((err) => {
         toast.error("Couldn't post comment");
+        setLoading(false);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
+
+  if (status === "loading")
+    return (
+      <div className="create-comment-section">
+        <div className="create-comment-section-container">
+          <Skeleton width="97%" height={250} />
+        </div>
+      </div>
+    );
+  if (status === "unauthenticated") return null;
 
   return (
     <div className="create-comment-section">
@@ -33,7 +54,7 @@ const PostCommentSection = ({ suggestionId }: { suggestionId: number }) => {
           <h3 className="h3 txt-dark-indigo mb-6">Add Comment</h3>
           <TextField
             value={value}
-            onChange={(value) => handleChange(value)}
+            onChange={(e) => handleChange(e.target.value)}
             isMultiline={true}
           />
           <div className="flex justify-between items-center mt-7">
@@ -41,7 +62,7 @@ const PostCommentSection = ({ suggestionId }: { suggestionId: number }) => {
               {maxChars - value.length} characters left
             </p>
             <button onClick={handlePost} className="btn btn-small btn-violet">
-              Post Comment
+              {isLoading ? <Spinner /> : "Post Comment"}
             </button>
           </div>
         </div>

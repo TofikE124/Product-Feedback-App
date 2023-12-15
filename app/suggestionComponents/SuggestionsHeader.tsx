@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useState } from "react";
 import BlackOverlay from "../components/BlackOverlay";
 import Skeleton from "../components/Skeleton";
-import CategoryList from "./CategoryList";
 import RoadMapComponent from "./RoadMapComponent";
 import Badge from "./Badge";
+import CategoryList from "./CategoryListComponent";
 
 const SuggestionsHeader = () => {
   const [isMenuActive, setMenuActive] = useState(false);

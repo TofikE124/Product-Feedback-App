@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Spinner from "../components/Spinner";
 import { Suggestion } from "@prisma/client";
-import { StatusList } from "../suggestionComponents/StatusList";
+import { StatusList } from "../lists/StatusList";
 
 const Navigation = ({
   status,

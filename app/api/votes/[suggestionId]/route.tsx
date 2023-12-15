@@ -1,7 +1,7 @@
 import prisma from "@/prisma/client";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-import { nextAuthOptions } from "../../auth/[...nextauth]/route";
+import { nextAuthOptions } from "../../auth/[...nextauth]/nextAuthOptions";
 
 interface Props {
   params: { suggestionId: string };

@@ -2,7 +2,7 @@ import { Status, Suggestion } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { StatusList } from "./StatusList";
+import { StatusList } from "../lists/StatusList";
 
 const RoadMapComponent = () => {
   const [data, setData] = useState<Suggestion[]>([]);

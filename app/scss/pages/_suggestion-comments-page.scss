@@ -23,11 +23,13 @@
     bottom: 0;
     width: 100vw;
     left: 0;
-    padding: 1em;
+    padding: 2em;
     margin: 1em;
     backdrop-filter: blur(2px);
   }
   .create-comment-section--container {
+    width: 100%;
+    margin-left: -1em;
     padding: 1.5rem 2rem;
     @include border-radius(10px);
     background: $WHITE;

@@ -8,7 +8,6 @@ const Navbar = () => {
   const { status, data: session } = useSession();
   return (
     <>
-      <Toaster />
       <div className="div-container navbar sm:hidden">
         {status === "loading" ? (
           <Skeleton width={160} height={50} />

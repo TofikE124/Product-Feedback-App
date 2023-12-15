@@ -6,9 +6,11 @@ import CommnetIcon from "@/public/assets/shared/icon-comments.svg";
 import { Vote as voteType } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { StatusList } from "../suggestionComponents/StatusList";
+import { StatusList } from "../lists/StatusList";
 import { getServerSession } from "next-auth";
 import { SuggestionWithVotesAndComments } from "./SuggestionsSummary";
+import CategoryCard from "./CategoryCard";
+import { CategoryList } from "../lists/categoryList";
 
 const StatusSuggestionsSummary = async ({
   suggestionSummary,
@@ -57,7 +59,7 @@ const StatusSuggestionsSummary = async ({
         {suggestionSummary.description}
       </p>
       <div className="suggestion-summary--category">
-        <Card>{suggestionSummary.category}</Card>
+        <CategoryCard category={CategoryList[suggestionSummary.category]} />
       </div>
       <div className="suggestion-summary--comments flex items-center self-center gap-2">
         <Image src={CommnetIcon} alt="Comment Icon" />

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Jost } from "next/font/google";
-import SessionProvider from "./providers/SessionProvider";
+import { Toaster } from "react-hot-toast";
 import "./main.scss";
-import Navbar from "./Navbar";
+import SessionProvider from "./providers/SessionProvider";
 
 const jost = Jost({ weight: ["400", "600", "700"], subsets: ["latin"] });
 
@@ -19,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={jost.className}>
+        <Toaster />
         <SessionProvider>{children}</SessionProvider>
       </body>
     </html>

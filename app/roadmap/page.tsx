@@ -1,9 +1,9 @@
 import { Status, Suggestion, User } from "@prisma/client";
 import StatusSuggestionsSummary from "../components/StatusSuggestionSummary";
 import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "../api/auth/[...nextauth]/route";
+import { nextAuthOptions } from "../api/auth/[...nextauth]/nextAuthOptions";
 import prisma from "@/prisma/client";
-import { StatusList } from "../suggestionComponents/StatusList";
+import { StatusList } from "../lists/StatusList";
 import Header from "./Header";
 import Navigation from "./Navigation";
 import { SuggestionWithVotesAndComments } from "../components/SuggestionsSummary";
@@ -56,6 +56,7 @@ const RoadPage = async ({ searchParams: { status } }: Props) => {
             .filter((suggestion) => suggestion.status === status)
             .map((suggestion) => (
               <StatusSuggestionsSummary
+                key={suggestion.id}
                 suggestionSummary={suggestion}
                 userVotes={user?.Votes || []}
               />
@@ -68,7 +69,7 @@ const RoadPage = async ({ searchParams: { status } }: Props) => {
   if (!suggestions) return;
 
   return (
-    <div className="roadmap-page div-container pb-24">
+    <div className="roadmap-page div-container pb-24 md:mt-14  lg:mt-20">
       <Header />
       <Navigation isLoading={false} data={suggestions} status={status} />
       <div className="mt-6 md:hidden">

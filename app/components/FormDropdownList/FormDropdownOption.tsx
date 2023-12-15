@@ -16,8 +16,6 @@ const FormDropdownOption = ({
   if (!context) return;
   const { selectedValue, setSelectedValue } = context;
 
-  const router = useRouter();
-
   const handleClick = () => {
     setSelectedValue({ value: value, label: children?.toString() || "" });
   };

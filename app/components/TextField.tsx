@@ -1,4 +1,17 @@
-import React, { LegacyRef, forwardRef } from "react";
+import { LegacyRef, forwardRef } from "react";
+
+interface Props {
+  errorMessage?: String | null;
+  defaultValue?: string | null;
+  placeholder?: string;
+  value?: string;
+  onChange?: (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => void;
+  isMultiline?: boolean;
+}
 
 const TextField = forwardRef(
   (
@@ -9,14 +22,7 @@ const TextField = forwardRef(
       isMultiline,
       onChange = () => {},
       ...rest
-    }: {
-      errorMessage?: String | null;
-      defaultValue?: string | null;
-      placeholder?: string;
-      value?: string;
-      onChange?: (value: string) => void;
-      isMultiline?: boolean;
-    },
+    }: Props,
     ref
   ) => {
     const INPUT_REF = ref as LegacyRef<HTMLInputElement>;
@@ -30,7 +36,7 @@ const TextField = forwardRef(
             className={`text-field ${errorMessage ? "error" : ""}`}
             placeholder={placeholder}
             {...rest}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => onChange(e)}
             ref={TEXTAREA_REF}
           ></textarea>
         ) : (
@@ -39,7 +45,7 @@ const TextField = forwardRef(
             className={`text-field ${errorMessage ? "error" : ""}`}
             placeholder={placeholder}
             {...rest}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => onChange(e)}
             ref={INPUT_REF}
           ></input>
         )}
@@ -49,5 +55,7 @@ const TextField = forwardRef(
     );
   }
 );
+
+TextField.displayName = "TextField";
 
 export default TextField;
