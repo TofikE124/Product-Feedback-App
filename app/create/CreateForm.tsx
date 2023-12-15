@@ -15,7 +15,7 @@ import { createSuggestionSchema } from "../api/validationSchema";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { StatusList } from "../suggestionComponents/RoadMap";
+import { StatusList } from "../suggestionComponents/StatusList";
 
 type FormType = z.infer<typeof createSuggestionSchema>;
 
@@ -41,7 +41,7 @@ const CreateForm = () => {
         setTimeout(() => {
           router.push("/");
           router.refresh();
-        }, 500);
+        }, 200);
       })
       .catch((err) => toast.error("Can't create feedback!"))
       .finally(() => setLoading(false));

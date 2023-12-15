@@ -5,7 +5,7 @@ import { useState } from "react";
 import BlackOverlay from "../components/BlackOverlay";
 import Skeleton from "../components/Skeleton";
 import CategoryList from "./CategoryList";
-import RoadMap from "./RoadMap";
+import RoadMapComponent from "./RoadMapComponent";
 import Badge from "./Badge";
 
 const SuggestionsHeader = () => {
@@ -40,7 +40,7 @@ const SuggestionsHeader = () => {
           )}
         </div>
         <CategoryList />
-        <RoadMap />
+        <RoadMapComponent />
         <div
           className={`md:hidden text-center ${
             status === "authenticated" ? "mt-auto" : ""

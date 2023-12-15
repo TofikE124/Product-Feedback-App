@@ -16,7 +16,7 @@ import { z } from "zod";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Suggestion } from "@prisma/client";
-import { StatusList } from "@/app/suggestionComponents/RoadMap";
+import { StatusList } from "@/app/suggestionComponents/StatusList";
 
 type FormType = z.infer<typeof createSuggestionSchema>;
 
@@ -43,7 +43,7 @@ const EditForm = ({ suggestion }: { suggestion: Suggestion }) => {
         setTimeout(() => {
           router.push("/");
           router.refresh();
-        }, 500);
+        }, 200);
       })
       .catch((err) => toast.error("Can't update feedback!"))
       .finally(() => setEditing(false));

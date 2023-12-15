@@ -1,0 +1,123 @@
+@use "../abstracts" as *;
+.suggestion-comments-page {
+  @include small-screen {
+    margin-top: 2rem;
+  }
+  @include medium-screen {
+    margin-top: 4.25rem;
+  }
+  @include large-screen {
+    margin-top: 5.75rem;
+  }
+  padding-bottom: 30em;
+
+  .comments-container {
+    padding: 1.5rem 2rem;
+    background-color: $WHITE;
+    @include border-radius(10px);
+  }
+
+  .create-comment-section {
+    position: fixed;
+    z-index: 200;
+    bottom: 0;
+    width: 100vw;
+    left: 0;
+    padding: 1em;
+    margin: 1em;
+    backdrop-filter: blur(2px);
+  }
+  .create-comment-section--container {
+    padding: 1.5rem 2rem;
+    @include border-radius(10px);
+    background: $WHITE;
+  }
+}
+
+.comment-container {
+  position: relative;
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    bottom: 0;
+    opacity: 0.25;
+    background: #8c92b3;
+  }
+}
+
+.comment-children-container {
+  position: relative;
+  padding-left: 1.5rem;
+  &::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    background: #647196;
+    opacity: 0.1;
+    left: 0;
+    top: 0;
+  }
+}
+
+.comment {
+  position: relative;
+  display: grid;
+  align-items: start;
+  width: 100%;
+  grid-template-columns: 40px 1fr 45px;
+  column-gap: 2rem;
+  row-gap: 0.5rem;
+  @include small-screen {
+    grid-template-areas:
+      "icon details date reply"
+      ". content content content";
+  }
+
+  .user-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    grid-area: icon;
+  }
+  .details {
+    grid-area: details;
+  }
+  .reply {
+    grid-area: reply;
+    width: fit-content;
+    justify-self: end;
+  }
+  .content {
+    grid-area: content;
+    margin-bottom: 1.5rem;
+  }
+
+  .reply-section {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr max-content;
+    z-index: 100;
+    margin-bottom: 0;
+    grid-row: 3;
+    grid-column: 1/-1;
+    width: 100%;
+
+    .buttons-container {
+      align-self: start;
+      grid-row: 1;
+      grid-column: 2/3;
+      button {
+        width: 100%;
+      }
+    }
+  }
+  @include medium-screen {
+    grid-template-areas:
+      "icon details reply"
+      ". content content ";
+  }
+}

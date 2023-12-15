@@ -2,8 +2,8 @@ import LoadingSkeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 interface Props {
-  height?: number;
-  width?: number;
+  height?: number | string;
+  width?: number | string;
   count?: number;
 }
 

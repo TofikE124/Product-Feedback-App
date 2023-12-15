@@ -18,33 +18,30 @@
 
 .btn-small {
   padding: 0.75rem 1.5rem;
-  @include small-screen {
-    padding: 0.5rem 0.75rem;
-  }
 }
 
 .btn-violet {
   background-color: $LEVENDER-VIOLET;
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: $LEVENDER-VIOLET-HOVER;
   }
 }
 
 .btn-blue {
   background-color: $MEDIUM-BLUE;
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: $MEDIUM-BLUE-HOVER;
   }
 }
 .btn-indigo {
   background-color: $DARK-INDIGO;
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: $DARK-INDIGO-HOVER;
   }
 }
 .btn-red {
   background-color: $RED;
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: $RED-HOVER;
   }
 }

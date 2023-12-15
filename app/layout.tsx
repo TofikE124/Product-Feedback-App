@@ -19,10 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={jost.className}>
-        <SessionProvider>
-          <Navbar />
-          {children}
-        </SessionProvider>
+        <SessionProvider>{children}</SessionProvider>
       </body>
     </html>
   );

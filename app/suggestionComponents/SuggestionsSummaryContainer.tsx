@@ -2,18 +2,22 @@ import { getServerSession } from "next-auth";
 import SuggestionsSummary from "../components/SuggestionsSummary";
 import SuggestionsEmpty from "./SuggestionsEmpty";
 import prisma from "@/prisma/client";
+import { Vote } from "@prisma/client";
 
 const SuggestionsSummaryContainer = async () => {
   const suggestions = await prisma.suggestion.findMany({
-    include: { Votes: true },
+    include: { Votes: true, Comments: true },
   });
 
   const session = await getServerSession();
-  const user = await prisma?.user.findUnique({
-    where: { email: session?.user?.email! },
-    include: { Votes: true },
-  });
-  const userVotes = user?.Votes;
+  let userVotes: Vote[];
+  if (session) {
+    const user = await prisma?.user.findUnique({
+      where: { email: session?.user?.email! },
+      include: { Votes: true },
+    });
+    userVotes = user?.Votes || [];
+  }
 
   return (
     <>
@@ -23,7 +27,7 @@ const SuggestionsSummaryContainer = async () => {
             <SuggestionsSummary
               key={index}
               suggestionSummary={suggestion}
-              userVotes={userVotes || []}
+              userVotes={userVotes}
             />
           ))}
         </div>

@@ -1,50 +1,46 @@
-"use client";
-import { Status, Suggestion } from "@prisma/client";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { Status, Suggestion, User } from "@prisma/client";
 import StatusSuggestionsSummary from "../components/StatusSuggestionSummary";
+import { getServerSession } from "next-auth";
+import { nextAuthOptions } from "../api/auth/[...nextauth]/route";
+import prisma from "@/prisma/client";
+import { StatusList } from "../suggestionComponents/StatusList";
 import Header from "./Header";
 import Navigation from "./Navigation";
-import { StatusList } from "../suggestionComponents/RoadMap";
-import SuggestionsSummary from "../components/SuggestionsSummary";
+import { SuggestionWithVotesAndComments } from "../components/SuggestionsSummary";
 
 interface Props {
   searchParams: { status: Status };
 }
 
-const RoadPage = ({ searchParams: { status } }: Props) => {
+const RoadPage = async ({ searchParams: { status } }: Props) => {
   if (!Object.values(Status).includes(status)) {
     status = "LIVE";
   }
 
-  const [data, setData] = useState<Suggestion[]>([]);
-  const values = Object.values(Status);
-  type statusType = (typeof values)[number];
-  const [isLoading, setLoading] = useState(false);
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get("/api/suggestions")
-      .then((res) => setData(res.data))
-      .finally(() => setLoading(false));
-  }, []);
-
+  // const [data, setData] = useState<Suggestion[]>([]);
+  // const values = Object.values(Status);
+  // type statusType = (typeof values)[number];
+  // const [isLoading, setLoading] = useState(false);
   // useEffect(() => {
-  //   if (!data) return;
+  //   setLoading(true);
+  //   axios
+  //     .get("/api/suggestions")
+  //     .then((res) => setData(res.data))
+  //     .finally(() => setLoading(false));
+  // }, []);
 
-  // //   let tempElements: Record<statusType, JSX.Element[]>;
-  // //   values.forEach((value) => {
-  // //     const filteredData = data.filter(
-  // //       (suggestion) => suggestion.status === value
-  // //     );
-  // //     tempElements[value] = filteredData.map((suggestion) => (
-  // //       <StatusSuggestionsSummary suggestionSummary={suggestion} />
-  // //     ));
-  // //     setElements(tempElements);
-  // //   });
-  // // }, [data]);
+  const suggestions: SuggestionWithVotesAndComments[] =
+    await prisma?.suggestion.findMany({
+      include: { Votes: true, Comments: true },
+    });
 
-  function getColumn(status: Status) {
+  const session = await getServerSession(nextAuthOptions);
+  const user = await prisma?.user.findUnique({
+    where: { email: session?.user?.email || "" },
+    include: { Votes: true },
+  });
+
+  function getColumn(status: Status, data: SuggestionWithVotesAndComments[]) {
     const currentStatus = StatusList[status];
     return (
       <div className="flex-grow">
@@ -59,22 +55,29 @@ const RoadPage = ({ searchParams: { status } }: Props) => {
           {data
             .filter((suggestion) => suggestion.status === status)
             .map((suggestion) => (
-              <StatusSuggestionsSummary suggestionSummary={suggestion} />
+              <StatusSuggestionsSummary
+                suggestionSummary={suggestion}
+                userVotes={user?.Votes || []}
+              />
             ))}
         </div>
       </div>
     );
   }
 
+  if (!suggestions) return;
+
   return (
     <div className="roadmap-page div-container pb-24">
       <Header />
-      <Navigation data={data} isLoading={isLoading} status={status} />
+      <Navigation isLoading={false} data={suggestions} status={status} />
       <div className="mt-6 md:hidden">
-        {getColumn(StatusList[status].value)}
+        {getColumn(StatusList[status].value, suggestions)}
       </div>
       <div className="flex gap-3 md:mt-8 lg:mt-12 sm:hidden">
-        {Object.values(StatusList).map((status) => getColumn(status.value))}
+        {Object.values(StatusList).map((status) =>
+          getColumn(status.value, suggestions)
+        )}
       </div>
     </div>
   );

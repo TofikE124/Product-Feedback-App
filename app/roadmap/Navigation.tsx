@@ -2,9 +2,7 @@
 import Link from "next/link";
 import Spinner from "../components/Spinner";
 import { Suggestion } from "@prisma/client";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { StatusList } from "../suggestionComponents/RoadMap";
+import { StatusList } from "../suggestionComponents/StatusList";
 
 const Navigation = ({
   status,

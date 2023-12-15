@@ -7,7 +7,7 @@ import {
   createContext,
   useState,
 } from "react";
-import ArrowDown from "../../svgs/ArrowDown";
+import ArrowDown from "../svgs/ArrowDown";
 
 export interface OptionsContextType {
   selectedValue: string | null;

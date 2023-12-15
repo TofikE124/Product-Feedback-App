@@ -1,19 +1,21 @@
 import Image from "next/image";
 import Card from "./Card";
 import CommnetIcon from "@/public/assets/shared/icon-comments.svg";
-import { Suggestion, Vote as VoteType } from "@prisma/client";
+import { Comment, Suggestion, Vote as VoteType } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { nextAuthOptions } from "../api/auth/[...nextauth]/route";
 import Vote from "./Vote";
 
-type SuggestionWithVotes = { Votes: VoteType[] } & Suggestion;
+export type SuggestionWithVotesAndComments = { Votes: VoteType[] } & {
+  Comments: Comment[];
+} & Suggestion;
 
 const SuggestionsSummary = async ({
   suggestionSummary,
   userVotes,
 }: {
-  suggestionSummary: SuggestionWithVotes;
+  suggestionSummary: SuggestionWithVotesAndComments;
   userVotes: VoteType[];
 }) => {
   const session = await getServerSession(nextAuthOptions);
@@ -27,16 +29,18 @@ const SuggestionsSummary = async ({
     <div className="suggestion-summary items-start no-underline">
       {session?.user ? (
         <Link
-          href={`/edit/${suggestionSummary.id}`}
+          href={`/suggestions/${suggestionSummary.id}`}
           className={`suggestion-summary--bg   cursor-pointer`}
         ></Link>
       ) : (
         ""
       )}
+      <div className="vote-container">
+        <Vote isActive={hasVoted} suggestionId={suggestionSummary.id}>
+          {suggestionSummary.Votes.length}
+        </Vote>
+      </div>
 
-      <Vote isActive={hasVoted} suggestionId={suggestionSummary.id}>
-        {suggestionSummary.Votes.length}
-      </Vote>
       <h3 className="suggestion-summary--title h3 txt-dark-indigo">
         {suggestionSummary.title}
       </h3>
@@ -49,7 +53,7 @@ const SuggestionsSummary = async ({
       <div className="suggestion-summary--comments flex items-center self-center gap-2">
         <Image src={CommnetIcon} alt="Comment Icon" />
         <p className="b1 txt-dark-indigo fw-bold">
-          {suggestionSummary.comments}
+          {suggestionSummary.Comments.length}
         </p>
       </div>
     </div>

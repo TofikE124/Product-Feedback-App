@@ -1,4 +1,5 @@
 import { Category, Status } from "@prisma/client";
+import { Content } from "next/font/google";
 import z from "zod";
 
 const CATEGORY_ARR = Object.values(Category) as string[];
@@ -47,4 +48,14 @@ export const updateSuggestionSchema = z.object({
 
 export const voteSchema = z.object({
   suggestionId: z.number().min(1),
+});
+
+export const createCommentSchema = z.object({
+  content: z
+    .string()
+    .min(1, "This field is required")
+    .max(250, "Comment can't have more than 255 charachters"),
+  suggestionId: z.number().min(1),
+  parentId: z.string().optional(),
+  taggedUserId: z.string().optional(),
 });

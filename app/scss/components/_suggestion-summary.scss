@@ -7,11 +7,12 @@
   z-index: 1;
   @include border-radius(10px);
 
-  .vote {
+  .vote-container {
     grid-area: vote;
   }
   .suggestion-summary--comments {
     grid-area: comments;
+    z-index: -2;
   }
   .suggestion-summary--title {
     grid-area: title;
@@ -20,6 +21,7 @@
     grid-area: description;
   }
   .suggestion-summary--category {
+    width: fit-content;
     grid-area: category;
   }
 
@@ -115,6 +117,7 @@
   .suggestion-summary--bg {
     position: absolute;
     inset: 0 0 0 0;
+    background-color: transparent;
     z-index: -1;
   }
 }

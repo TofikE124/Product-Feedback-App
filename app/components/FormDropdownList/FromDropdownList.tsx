@@ -1,5 +1,5 @@
 "use client";
-import ArrowDown from "@/app/svgs/ArrowDown";
+import ArrowDown from "@/app/components/svgs/ArrowDown";
 import {
   Dispatch,
   LegacyRef,

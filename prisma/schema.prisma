@@ -11,15 +11,17 @@ datasource db {
 }
 
 model Suggestion {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now()) @updatedAt
   publisherId String
-  publisher   User     @relation(fields: [publisherId], references: [id])
-  title       String   @db.VarChar(255)
-  description String   @db.Text
-  category    Category @default(BUG)
-  status      Status   @default(PLANNED)
-  comments    Int      @default(0)
+  publisher   User      @relation(fields: [publisherId], references: [id])
+  title       String    @db.VarChar(255)
+  description String    @db.Text
+  category    Category  @default(BUG)
+  status      Status    @default(PLANNED)
   Votes       Vote[]
+  Comments    Comment[]
 }
 
 enum Category {
@@ -44,6 +46,21 @@ model Vote {
   suggestionId Int
 
   @@unique([userId, suggestionId]) // Ensures uniqueness of userId and suggestionId combination
+}
+
+model Comment {
+  id            String     @id @default(cuid())
+  createdAt     DateTime   @default(now())
+  content       String     @db.Text()
+  publisherId   String
+  publisher     User       @relation(fields: [publisherId], references: [id])
+  suggestionId  Int
+  suggestion    Suggestion @relation(fields: [suggestionId], references: [id])
+  taggedUserId  String? // Reference to the tagged user
+  taggedUser    User?      @relation("TaggedSuggestions", fields: [taggedUserId], references: [id])
+  parentId      String? // Reference to the parent comment (self-referential)
+  parentComment Comment?   @relation("ChildComments", fields: [parentId], references: [id])
+  childComments Comment[]  @relation("ChildComments") // One-to-many relationship for replies
 }
 
 model Account {
@@ -74,15 +91,17 @@ model Session {
 }
 
 model User {
-  id            String       @id @default(cuid())
-  name          String?
-  email         String?      @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  Suggestion    Suggestion[]
-  Votes         Vote[]
+  id                String       @id @default(cuid())
+  name              String?
+  email             String?      @unique
+  emailVerified     DateTime?
+  image             String?
+  accounts          Account[]
+  sessions          Session[]
+  Suggestions       Suggestion[]
+  Votes             Vote[]
+  Comments          Comment[]
+  taggedSuggestions Comment[]    @relation("TaggedSuggestions")
 }
 
 model VerificationToken {

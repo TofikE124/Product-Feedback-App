@@ -3,23 +3,33 @@ import Card from "./Card";
 import Vote from "./Vote";
 
 import CommnetIcon from "@/public/assets/shared/icon-comments.svg";
-import { Suggestion } from "@prisma/client";
+import { Vote as voteType } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { StatusList } from "../suggestionComponents/RoadMap";
+import { StatusList } from "../suggestionComponents/StatusList";
+import { getServerSession } from "next-auth";
+import { SuggestionWithVotesAndComments } from "./SuggestionsSummary";
 
-const StatusSuggestionsSummary = ({
+const StatusSuggestionsSummary = async ({
   suggestionSummary,
+  userVotes,
 }: {
-  suggestionSummary: Suggestion;
+  suggestionSummary: SuggestionWithVotesAndComments;
+  userVotes: voteType[];
 }) => {
-  const { data: session } = useSession();
+  const session = await getServerSession();
   const SuggestionStatus = StatusList[suggestionSummary.status];
+
+  const hasVoted = Boolean(
+    userVotes?.filter((vote) => vote.suggestionId === suggestionSummary.id)
+      .length
+  );
+
   return (
     <div className="suggestion-summary is-status items-start no-underline">
       {session?.user ? (
         <Link
-          href={`/edit/${suggestionSummary.id}`}
+          href={`/suggestions/${suggestionSummary.id}`}
           className={`suggestion-summary--bg   cursor-pointer`}
         ></Link>
       ) : (
@@ -34,7 +44,12 @@ const StatusSuggestionsSummary = ({
         <div className={`small-circle ${SuggestionStatus.className}`}></div>
         <p className="b1 txt-light-slate-grey">{SuggestionStatus.label}</p>
       </div>
-      <Vote>{suggestionSummary.upVotes}</Vote>
+      <div className="vote-container">
+        <Vote isActive={hasVoted} suggestionId={suggestionSummary.id}>
+          {suggestionSummary.Votes.length}
+        </Vote>
+      </div>
+
       <h3 className="suggestion-summary--title h3 txt-dark-indigo">
         {suggestionSummary.title}
       </h3>
@@ -47,7 +62,7 @@ const StatusSuggestionsSummary = ({
       <div className="suggestion-summary--comments flex items-center self-center gap-2">
         <Image src={CommnetIcon} alt="Comment Icon" />
         <p className="b1 txt-dark-indigo fw-bold">
-          {suggestionSummary.comments}
+          {suggestionSummary.Comments.length}
         </p>
       </div>
     </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import ArrowLeft from "../svgs/ArrowLeft";
+import ArrowLeft from "./svgs/ArrowLeft";
 
 const BackButton = () => {
   const router = useRouter();

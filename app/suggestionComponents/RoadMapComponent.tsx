@@ -2,34 +2,9 @@ import { Status, Suggestion } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { StatusList } from "./StatusList";
 
-const values = Object.values(Status);
-type statusType = (typeof values)[number];
-export const StatusList: Record<
-  statusType,
-  { value: Status; label: string; description: string; className: string }
-> = {
-  PLANNED: {
-    value: "PLANNED",
-    label: "Planned",
-    className: "bg-light-salmon",
-    description: "Features to be developed in futre",
-  },
-  IN_PROGRESS: {
-    value: "IN_PROGRESS",
-    label: "In-Progress",
-    className: "bg-levender-violet",
-    description: "Features currently being developed",
-  },
-  LIVE: {
-    value: "LIVE",
-    label: "Live",
-    className: "bg-light-sky-blue",
-    description: "Features About to be developed",
-  },
-};
-
-const RoadMap = () => {
+const RoadMapComponent = () => {
   const [data, setData] = useState<Suggestion[]>([]);
 
   useEffect(() => {
@@ -63,4 +38,4 @@ const RoadMap = () => {
   );
 };
 
-export default RoadMap;
+export default RoadMapComponent;
