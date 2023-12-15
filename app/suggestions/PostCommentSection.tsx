@@ -48,7 +48,7 @@ const PostCommentSection = ({ suggestionId }: { suggestionId: number }) => {
   if (status === "unauthenticated") return null;
 
   return (
-    <div className="create-comment-section">
+    <div className="create-comment-section div-container">
       <form>
         <div className="create-comment-section--container">
           <h3 className="h3 txt-dark-indigo mb-6">Add Comment</h3>

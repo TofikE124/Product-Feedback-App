@@ -22,7 +22,8 @@
     z-index: 200;
     bottom: 0;
     width: 100vw;
-    left: 0;
+    left: 50%;
+    translate: -50% 0;
     padding: 2em;
     margin: 1em;
     backdrop-filter: blur(2px);
