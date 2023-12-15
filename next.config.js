@@ -16,6 +16,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "i.stack.imgur.com",
       },
+      {
+        protocol: "https",
+        hostname: "i.ibb.co",
+      },
     ],
   },
 };
