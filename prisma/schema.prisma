@@ -6,18 +6,18 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "cockroachdb"
   url      = env("DATABASE_URL")
 }
 
 model Suggestion {
-  id          Int       @id @default(autoincrement())
+  id          Int       @id @default(sequence(increment: 1))
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @default(now()) @updatedAt
   publisherId String
   publisher   User      @relation(fields: [publisherId], references: [id], onDelete: Cascade)
-  title       String    @db.VarChar(255)
-  description String    @db.Text
+  title       String    @db.Char(255)
+  description String    @db.String()
   category    Category  @default(BUG)
   status      Status    @default(PLANNED)
   Votes       Vote[]
@@ -51,7 +51,7 @@ model Vote {
 model Comment {
   id            String     @id @default(cuid())
   createdAt     DateTime   @default(now())
-  content       String     @db.Text()
+  content       String     @db.String()
   publisherId   String
   publisher     User       @relation(fields: [publisherId], references: [id], onDelete: Cascade)
   suggestionId  Int
@@ -69,12 +69,12 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String? @db.String()
+  access_token      String? @db.String()
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String? @db.String()
   session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)

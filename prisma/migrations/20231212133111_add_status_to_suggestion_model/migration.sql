@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `suggestion` ADD COLUMN `status` ENUM('PLANNED', 'IN_PROGRESS', 'LIVE') NOT NULL DEFAULT 'PLANNED';
