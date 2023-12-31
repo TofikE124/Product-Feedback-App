@@ -37,19 +37,13 @@ const SuggestionsMainHeader = ({ sortBy }: { sortBy: string }) => {
         <DropdownOption>Most Comments</DropdownOption>
         <DropdownOption>Least Comments</DropdownOption>
       </DropdownList>
-      {status === "loading" ? (
-        <div className="ml-auto">
-          <Skeleton height={42} width={172} />
-        </div>
-      ) : (
-        <button
-          disabled={status === "unauthenticated"}
-          onClick={() => router.push("/create")}
-          className="btn btn-small btn-violet ml-auto h4"
-        >
-          + Add Feedback
-        </button>
-      )}
+      <button
+        disabled={status === "unauthenticated"}
+        onClick={() => router.push("/create")}
+        className="btn btn-small btn-violet ml-auto h4"
+      >
+        + Add Feedback
+      </button>
     </div>
   );
 };

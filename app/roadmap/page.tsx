@@ -7,6 +7,7 @@ import { StatusList } from "../lists/StatusList";
 import Header from "./Header";
 import Navigation from "./Navigation";
 import { SuggestionWithVotesAndComments } from "../components/SuggestionsSummary";
+import Skeleton from "../components/Skeleton";
 
 interface Props {
   searchParams: { status: Status };

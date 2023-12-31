@@ -1,21 +1,20 @@
 "use client";
 import PlusIcon from "@/public/assets/shared/icon-new-feedback.svg";
-import React, { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { z } from "zod";
+import { createSuggestionSchema } from "../api/validationSchema";
 import FormDropdownOption from "../components/FormDropdownList/FormDropdownOption";
 import FormDropdownList from "../components/FormDropdownList/FromDropdownList";
 import Spinner from "../components/Spinner";
 import TextField from "../components/TextField";
-import { CategoryList } from "../lists/categoryList";
-import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
-import { useSession } from "next-auth/react";
-import { useForm, FieldValues } from "react-hook-form";
-import toast from "react-hot-toast";
-import { createSuggestionSchema } from "../api/validationSchema";
-import { z } from "zod";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { StatusList } from "../lists/StatusList";
+import { CategoryList } from "../lists/categoryList";
 
 type FormType = z.infer<typeof createSuggestionSchema>;
 

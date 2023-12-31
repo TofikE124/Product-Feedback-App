@@ -15,7 +15,7 @@ export default async function SuggestionsPage({
     <>
       <Navbar />
       <div className="suggestions-page div-container">
-        <SuggestionsHeader  />
+        <SuggestionsHeader />
         <main className="suggestions-page--main h-fit pb-28">
           <SuggestionsMainHeader sortBy={sortBy} />
           <SuggestionsSummaryContainer sortBy={sortBy} category={category} />
