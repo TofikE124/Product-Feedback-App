@@ -32,6 +32,7 @@ const SuggestionsMainHeader = ({ sortBy }: { sortBy: string }) => {
         onChange={(value) => handleChange(value)}
         defaultValue={sortBy || "Most Upvotes"}
       >
+        <DropdownOption>Most Recent</DropdownOption>
         <DropdownOption>Most Upvotes</DropdownOption>
         <DropdownOption>Least Upvotes</DropdownOption>
         <DropdownOption>Most Comments</DropdownOption>

@@ -94,9 +94,8 @@
         ". category .";
       column-gap: 2.5rem;
 
-      .suggestion-summary--title,
-      .suggestion-summary--description {
-        max-width: 320px;
+      .suggestion-summary--title {
+        max-width: 400px;
         width: fit-content;
         overflow: hidden;
         white-space: nowrap;

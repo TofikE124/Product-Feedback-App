@@ -34,7 +34,8 @@ const CreateForm = () => {
     setLoading(true);
     axios
       .post("/api/suggestions", data)
-      .then(() => {
+      .then((response) => {
+        console.log(response);
         toast.success("Feedback created sucessfully");
         setTimeout(() => {
           router.push("/");

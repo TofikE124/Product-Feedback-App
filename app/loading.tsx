@@ -1,4 +1,5 @@
 import Skeleton from "./components/Skeleton";
+import SuggestionsLoadingSkeleton from "./loadingSkeletons/SuggestionsLoadingSkeleton";
 import SuggestionsHeader from "./suggestionComponents/SuggestionsHeader";
 
 const LoadingPage = () => {
@@ -25,12 +26,7 @@ const LoadingPage = () => {
             width="full"
           />
         </div>
-        <div className="flex flex-col gap-4 md:mt-8">
-          <Skeleton height={200} baseColor="white" highlightColor="#f5f5f5" />
-          <Skeleton height={200} baseColor="white" highlightColor="#f5f5f5" />
-          <Skeleton height={200} baseColor="white" highlightColor="#f5f5f5" />
-          <Skeleton height={200} baseColor="white" highlightColor="#f5f5f5" />
-        </div>
+        <SuggestionsLoadingSkeleton />
       </main>
     </div>
   );

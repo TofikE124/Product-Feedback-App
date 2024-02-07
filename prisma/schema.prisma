@@ -16,7 +16,7 @@ model Suggestion {
   updatedAt   DateTime  @default(now()) @updatedAt
   publisherId String
   publisher   User      @relation(fields: [publisherId], references: [id], onDelete: Cascade)
-  title       String    @db.Char(255)
+  title       String    @db.String()
   description String    @db.String()
   category    Category  @default(BUG)
   status      Status    @default(PLANNED)
@@ -29,7 +29,7 @@ enum Category {
   UX
   ENHANCMENT
   BUG
-  FEATURE
+  FEATUREn
 }
 
 enum Status {

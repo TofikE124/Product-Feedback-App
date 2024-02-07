@@ -30,7 +30,6 @@ const EditForm = ({ suggestion }: { suggestion: Suggestion }) => {
   } = useForm<FormType>({ resolver: zodResolver(createSuggestionSchema) });
 
   const router = useRouter();
-  const { status } = useSession();
   const [isEditing, setEditing] = useState(false);
   const [isDeleting, setDeleting] = useState(false);
 

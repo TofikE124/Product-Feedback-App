@@ -14,6 +14,12 @@ const SuggestionsSummaryContainer = async ({
 }) => {
   let orderBy = {};
   switch (sortBy) {
+    case "Most Recent": {
+      orderBy = {
+        createdAt: "desc",
+      };
+      break;
+    }
     case "Most Upvotes": {
       orderBy = {
         Votes: {
@@ -48,12 +54,14 @@ const SuggestionsSummaryContainer = async ({
     }
   }
 
+  console.log(orderBy);
+
   if (category && !Object.values(Category).includes(category)) notFound();
 
   const suggestions = await prisma.suggestion.findMany({
     where: { category: category },
     include: { Votes: true, Comments: true },
-    orderBy: orderBy,
+    orderBy,
   });
 
   const session = await getServerSession();

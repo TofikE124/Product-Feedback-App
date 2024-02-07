@@ -10,7 +10,7 @@ CREATE TABLE "Suggestion" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "publisherId" STRING NOT NULL,
-    "title" CHAR(255) NOT NULL,
+    "title" STRING NOT NULL,
     "description" STRING NOT NULL,
     "category" "Category" NOT NULL DEFAULT 'BUG',
     "status" "Status" NOT NULL DEFAULT 'PLANNED',
