@@ -29,7 +29,7 @@ enum Category {
   UX
   ENHANCMENT
   BUG
-  FEATUREn
+  FEATURE
 }
 
 enum Status {
